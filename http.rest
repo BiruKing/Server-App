@@ -1,0 +1,84 @@
+### LOGIN
+POST http://localhost:300/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "65p",
+    "password": "234524234"
+  }
+
+
+### PENALITY SEND POST
+
+POST http://localhost:300/penalty HTTP/1.1
+content-type: application/json
+
+{
+    "datee":"Kingo +++",
+    "timee":"231",
+    "city":"Adissd",
+    "Road_name":"45634355",
+    "Licence_num":"0456",
+    "Ticket_Num":"Read light  Cross",
+    "Cause":"Amare",
+    "Traffic_Name":"Getu",
+    "P_Balance":"677.8",
+    "DF_Name":"Adamu",
+    "DM_Name":"Mola",
+    "DL_Name":"Sea",
+    "Report":"Thank you so much! It worked perfectly fine. Can you please explain why the code that I had written was not working? – Mursil Khan Apr 13 "
+  }
+
+
+### PENALITY GET HISTORY
+
+GET http://localhost:300/penalty/history HTTP/1.1
+
+
+
+### REPORT SEND POST
+
+POST http://localhost:300/report HTTP/1.1
+content-type: application/json
+
+  {
+    //Report
+  "Datee" : "1-5-2010",
+  "Timee" : "7 :00",
+  "City" : "Gonder",
+  "Kebele" : "14",
+  "Road_Name" : "Jantekel",
+  "Location" : "00r42444",
+  "Direction" : "east",
+  "Targa_Num" : "100435",
+  "Side_Code" : "12352",
+  "Tapela_Code" : "12121",
+  "Car_Type" : "Corola",
+  "Colore" : "Black",
+  "Report_Cause" : "Kill and disappear",
+  "Report_Id" : "1291856",
+  "Trafic_Police_Id":"12",
+
+  //Report photos
+
+  "photos":[ "Ford", "BMW", "Fiat" ]
+
+  //Reopter details if its not trafic
+
+
+  }
+
+### REPORRTS GET HISTORY
+
+GET http://localhost:300/report/history HTTP/1.1
+
+
+
+### DRIVING LICENCE VALIDATION
+
+POST http://localhost:300/validate HTTP/1.1
+content-type: application/json
+
+  {
+  "licenseNumber": "5646346656"
+  }
