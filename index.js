@@ -18,14 +18,29 @@ app.post("/post", (req, res) => {
   res.send("Ok");
 });
 
+//? Traffic police
+const LoginRoute = require("./Routers/Mobile/Login");
+const ValidateRoute = require("./Routers/Mobile/Validate");
+const PenaltyRoute = require("./Routers/Mobile/Penalty");
+const ReportRoute = require("./Routers/Mobile/Report");
+
+//? Notification wen Accident report calls and notification for mobile run
+const NotificationRoute = require("./Routers/Mobile/Notification");
+
+const AccidentReportRoute = require("./Routers/Web/Reporters/AccidentReport");
+
+const DispleasureReportRoute = require("./Routers/Web/Drivers/DispleasureReport");
+
+const ViewRoute = require("./Routers/Web/Admin/View");
+const GenerateRoute = require("./Routers/Web/Admin/Generate");
+
+const OfficersLoginRoute = require("./Routers/Web/Admin/Officers/Login");
+const OfficersManagerRoute = require("./Routers/Web/Admin/Officers/Manage");
+
+const TransportAuthLoginRoute = require("./Routers/Web/Admin/Officers/Login");
+///!-----------
+
 //! Middleware
-
-const LoginRoute = require("./Routers/Login");
-const ValidateRoute = require("./Routers/Validate");
-const PenaltyRoute = require("./Routers/Penalty");
-const ReportRoute = require("./Routers/Report");
-const NotificationRoute = require("./Routers/Notification");
-
 app.use("/login", LoginRoute);
 app.use("/validate", ValidateRoute);
 app.use("/penalty", PenaltyRoute);
@@ -70,6 +85,21 @@ post
 //   // Authentication
 
 // });
+
+//! Test Androids
+app.use(express.json());
+
+app.get("/test/get", (req, res) => {
+  res.send({ key: "Value" });
+  console.log("Well come Androids");
+});
+
+app.post("/test/post", (req, res) => {
+  console.log(req.body);
+  // console.log(req.body.password);
+
+  res.send({ key: "Value" });
+});
 
 //Todo: Routes
 

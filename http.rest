@@ -1,9 +1,22 @@
-### LOGIN
-POST http://localhost:300/login HTTP/1.1
+### GET Test
+GET http://localhost:300/test/get HTTP/1.1
+
+### POST Test
+POST http://localhost:300/test/post HTTP/1.1
 content-type: application/json
 
 {
-    "username": "65p",
+    "username": "65",
+    "password": "234524234"
+  }
+
+
+### LOGIN
+POST http://10.18.197.67:300/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "65",
     "password": "234524234"
   }
 
@@ -70,7 +83,7 @@ content-type: application/json
 
 ### REPORRTS GET HISTORY
 
-GET http://localhost:300/report/history HTTP/1.1
+GET http://127.0.0.1:300/report/history HTTP/1.1
 
 
 
