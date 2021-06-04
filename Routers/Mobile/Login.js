@@ -41,53 +41,57 @@ router.post("/", (req, res) => {
       console.log("Logged in");
       console.log(row);
 
-      row.map((item) => {
-        if (
-          item.User_Name == req.body.username &&
-          item.Pass_Word == req.body.password
-        ) {
-          console.log(
-            item.User_Name,
-            req.body.username,
-            item.Pass_Word,
-            req.body.password
-          );
-          console.log(item);
-          found = true;
+      if (row != undefined) {
+        row.map((item) => {
+          if (
+            item.User_Name == req.body.username &&
+            item.Pass_Word == req.body.password
+          ) {
+            console.log(
+              item.User_Name,
+              req.body.username,
+              item.Pass_Word,
+              req.body.password
+            );
+            console.log(item);
+            found = true;
 
-          //Make json request object without password
+            //Make json request object without password
 
-          jsonReqObj = {
-            First_Name: item.First_Name,
-            Middle_Name: item.Middle_Name,
-            Last_Name: item.Last_Name,
-            Phone_Num: item.Phone_Num,
-            Photo: item.Photo,
-            User_Name: item.User_Name,
-            IS_Officer: item.IS_Officer,
-            Traffic_Police_Id: item.Traffic_Police_Id,
-            City: item.City,
-          };
-        }
-      });
-      //rows[0].solution)
+            jsonReqObj = {
+              First_Name: item.First_Name,
+              Middle_Name: item.Middle_Name,
+              Last_Name: item.Last_Name,
+              Phone_Num: item.Phone_Num,
+              Photo: item.Photo,
+              User_Name: item.User_Name,
+              IS_Officer: item.IS_Officer,
+              Traffic_Police_Id: item.Traffic_Police_Id,
+              City: item.City,
+            };
+          }
+        });
+        //rows[0].solution)
 
-      if (found) {
-        try {
-          const datas = await row;
+        if (found) {
+          try {
+            const datas = await row;
 
-          // console.log("json e " + datas[0]);
+            // console.log("json e " + datas[0]);
 
-          res.send({ jsonReqObj });
+            res.send(jsonReqObj);
 
-          res.end();
-        } catch (e) {
-          console.log("json exceotion " + e);
+            res.end();
+          } catch (e) {
+            console.log("json exceotion " + e);
+          }
+        } else {
+          // console.log("Wrong username or password");
+          // res.json({ msg: "Wrong username or password" });
+          // res.end();
         }
       } else {
-        console.log("Wrong username or password");
-        res.send("Wrong username or password");
-        res.end();
+        console.log("Database is not run");
       }
     });
   } catch (error) {

@@ -89,9 +89,11 @@ post
 //! Test Androids
 app.use(express.json());
 
-app.get("/test/get", (req, res) => {
-  res.send({ key: "Value" });
+app.post("/test/get", (req, res) => {
   console.log("Well come Androids");
+  console.log(req.body);
+  console.log(req.body.username);
+  res.json({ key: "Value" });
 });
 
 app.post("/test/post", (req, res) => {

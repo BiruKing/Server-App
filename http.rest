@@ -1,8 +1,8 @@
 ### GET Test
-GET http://localhost:300/test/get HTTP/1.1
+GET http://10.18.197.116:300/test/get HTTP/1.1
 
 ### POST Test
-POST http://localhost:300/test/post HTTP/1.1
+POST http://10.18.197.116:300/test/post HTTP/1.1
 content-type: application/json
 
 {
@@ -12,7 +12,7 @@ content-type: application/json
 
 
 ### LOGIN
-POST http://10.18.197.67:300/login HTTP/1.1
+POST http://10.18.197.116:300/login HTTP/1.1
 content-type: application/json
 
 {
