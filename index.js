@@ -113,7 +113,7 @@ app.post("/test/post", (req, res) => {
 
 // app.get("/", (req, res) => {
 
-//   //about mysql
+//   //about mysqlexit
 
 //   try {
 //     connection.query("SELECT * FROM user", (err, row, fields) => {

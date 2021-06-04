@@ -43,7 +43,7 @@ router.post("/", (req, res) => {
     }
   });
 
-  const sql = `SELECT * FROM driving_licence WHERE LIcence_Num = ${req.body.licenseNumber}`;
+  const sql = `SELECT drivers.First_Name,drivers.Middle_Name,drivers.Last_Name,drivers.LIcence_Num,drivers.City,drivers.Natonality,drivers.Photo,driving_licence.Date,driving_licence.Level,driving_licence.Driving_Schhol_N,driving_licence.DrivingScool,driving_licence.Level,driving_licence.LastCheck FROM drivers,driving_licence WHERE driving_licence.Licence_Num = ${req.body.licenseNumber}`;
 
   try {
     connection.query(sql, async (err, row, fields) => {
@@ -69,9 +69,25 @@ router.post("/", (req, res) => {
       try {
         const datas = await row;
 
-        //  console.log("json e " + datas[0].City);
+        // Asign data to the json object to be sending
+        jsonReqObj = {
+          First_Name: datas[0].First_Name,
+          Middle_Name: datas[0].Middle_Name,
+          Last_Name: datas[0].Last_Name,
+          LIcence_Num: datas[0].LIcence_Num,
+          Driving_Schhol_N: datas[0].Driving_Schhol_N,
+          City: datas[0].City,
+          Date: datas[0].Date,
+          Natonality: datas[0].Natonality,
+          Level: datas[0].Level,
+          LastCheck: datas[0].LastCheck,
+          Photo: datas[0].Photo,
+        };
 
-        res.json(datas);
+        console.log("json e " + jsonReqObj);
+        console.log("json e " + jsonReqObj);
+
+        res.json(jsonReqObj);
       } catch (e) {
         console.log("json exceotion " + e);
       }

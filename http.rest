@@ -39,6 +39,7 @@ content-type: application/json
     "DF_Name":"Adamu",
     "DM_Name":"Mola",
     "DL_Name":"Sea",
+    "P_Type":"Money",
     "Report":"Thank you so much! It worked perfectly fine. Can you please explain why the code that I had written was not working? – Mursil Khan Apr 13 "
   }
 

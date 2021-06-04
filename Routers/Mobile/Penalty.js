@@ -15,7 +15,6 @@ router.use(express.json());
 
 router.post("/", (req, res) => {
   console.log("0 ", req.body.city);
-  res.send("Ok");
 
   //about mysql
 
@@ -52,7 +51,7 @@ router.post("/", (req, res) => {
 
     //todo insertion
 
-    const sql = `INSERT INTO penalty (Datee, Timee, City, Road_name, Licence_num, Ticket_Num, Cause, Trafic_Name, P_Balance, DF_Name, DM_Name, DL_Name, Report) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const sql = `INSERT INTO penalty (Datee, Timee, City, Road_name, Licence_num, Ticket_Num, Cause, Trafic_Name, P_Balance, DF_Name, DM_Name, DL_Name, Report,P_Type) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     console.log(
       req.body.datee +
@@ -79,7 +78,9 @@ router.post("/", (req, res) => {
         "\n" +
         req.body.DL_Name +
         "\n" +
-        req.body.Report
+        req.body.Report +
+        "\n" +
+        req.body.P_Type
     );
 
     connection.query(
@@ -98,13 +99,17 @@ router.post("/", (req, res) => {
         req.body.DM_Name,
         req.body.DL_Name,
         req.body.Report,
+        req.body.P_Type,
       ],
       function (err, data) {
         if (err) {
           console.log("some error occurred " + err);
+          res.json({ response: "Error" });
+
           // some error occurred
         } else {
           console.log("successfully inserted into db");
+          res.json({ response: "Ok" });
 
           // successfully inserted into db
         }
