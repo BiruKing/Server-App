@@ -47,49 +47,58 @@ router.post("/", (req, res) => {
 
   try {
     connection.query(sql, async (err, row, fields) => {
-      res.setHeader("Content-Type", "application/json");
+      console.log("Validation");
+      //  console.log(row);
 
-      // console.log(row[0].First_Name);
-      // // res.send("penalty history");
+      if (row != undefined) {
+        row.map((item) => {
+          if (item.LIcence_Num == req.body.licenseNumber) {
+            console.log(item.LIcence_Num, req.body.LIcence_Num);
+            console.log(item);
+            found = true;
 
-      // row.map((item) => {
-      //   console.log(
-      //     item.First_Name + "\n",
-      //     item.Middle_Name + "\n",
-      //     item.Last_Name + "\n",
-      //     item.LIcence_Num + "\n",
-      //     item.Driving_Schhol_N + "\n",
-      //     item.City + "\n",
-      //     item.Datee + "\n",
-      //     item.Natonality + "\n",
-      //     item.Photo + "\n"
-      //   );
-      // });
-      //rows[0].solution)
-      try {
-        const datas = await row;
+            //Make json request object without password
 
-        // Asign data to the json object to be sending
-        jsonReqObj = {
-          First_Name: datas[0].First_Name,
-          Middle_Name: datas[0].Middle_Name,
-          Last_Name: datas[0].Last_Name,
-          LIcence_Num: datas[0].LIcence_Num,
-          Driving_Schhol_N: datas[0].Driving_Schhol_N,
-          City: datas[0].City,
-          Date: datas[0].Date,
-          Natonality: datas[0].Natonality,
-          Level: datas[0].Level,
-          LastCheck: datas[0].LastCheck,
-          Photo: datas[0].Photo,
-        };
+            jsonReqObj = {
+              First_Name: item.First_Name,
+              Middle_Name: item.Middle_Name,
+              Last_Name: item.Last_Name,
+              LIcence_Num: item.LIcence_Num,
+              Driving_Schhol_N: item.Driving_Schhol_N,
+              City: item.City,
+              Date: item.Date,
+              Natonality: item.Natonality,
+              Level: item.Level,
+              LastCheck: item.LastCheck,
+              Photo: item.Photo,
+            };
+          }
+        });
+        //rows[0].solution)
 
-        console.log("json e " + jsonReqObj);
-        console.log("json e " + jsonReqObj);
+        if (found) {
+          try {
+            const datas = await row;
 
-        res.json(jsonReqObj);
-      } catch (e) {
-        console.log("json exceotion " + e);
+            // console.log("json e " + datas[0]);
+
+            res.send(jsonReqObj);
+
+            res.end();
+          } catch (e) {
+            console.log("json exceotion " + e);
+          }
+        } else {
+          // console.log("Wrong username or password");
+          // res.json({ msg: "Wrong username or password" });
+          // res.end();
+          res.json({ response: "Not Found" });
+        }
+      } else {
+        // console.log("Wrong username or password");
+        // res.json({ msg: "Wrong username or password" });
+        // res.end();
+        res.json({ response: "Not Found" });
       }
     });
   } catch (error) {

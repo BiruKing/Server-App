@@ -94,5 +94,5 @@ POST http://localhost:300/validate HTTP/1.1
 content-type: application/json
 
   {
-  "licenseNumber": "5646346656"
+  "licenseNumber": "5646346656 6"
   }

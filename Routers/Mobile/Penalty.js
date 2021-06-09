@@ -117,6 +117,7 @@ router.post("/", (req, res) => {
     );
   } catch (error) {
     console.log("Wrong Q");
+    res.json({ response: "Error" });
   }
 
   connection.end();
